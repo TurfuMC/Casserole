@@ -1,5 +1,5 @@
 {
-  "name": "discord-musicbot",
+  "name": "casserole",
   "version": "4.1.1",
   "description": "Very simple discord music bot with the discord.js with Song Name playing. It can able to play music with the song name",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SudhanPlayz/Discord-MusicBot.git"
+    "url": "git+https://github.com/TurfuMC/Casserole.git"
   },
   "engines": {
     "node": "14.x"
@@ -25,9 +25,9 @@
   "author": "SudhanPlayz",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/SudhanPlayz/Discord-MusicBot/issues"
+    "url": "https://github.com/TurfuMC/Casserole/issues"
   },
-  "homepage": "https://github.com/SudhanPlayz/Discord-MusicBot#readme",
+  "homepage": "https://github.com/TurfuMC/Casserole#readme",
   "dependencies": {
     "colors": "^1.4.0",
     "cpu-stat": "^2.0.1",

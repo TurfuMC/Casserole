@@ -38,7 +38,7 @@ class DiscordMusicBot extends Client {
     }
     if (this.config.Token === "")
       return new TypeError(
-        "Please fill in the information in the config.js file."
+        "Veuillez remplir les informations dans le fichier config.js."
       );
 
     this.LoadCommands();
@@ -149,12 +149,12 @@ class DiscordMusicBot extends Client {
       .on("trackStart", async (player, track) => {
         this.SongsPlayed++;
         let TrackStartedEmbed = new MessageEmbed()
-          .setAuthor(`Now playing ♪`, this.config.IconURL)
+          .setAuthor(`Lecture en cours ♪`, this.config.IconURL)
           .setThumbnail(player.queue.current.displayThumbnail())
           .setDescription(`[${track.title}](${track.uri})`)
-          .addField("Requested by", `${track.requester}`, true)
+          .addField("Demandé par", `${track.requester}`, true)
           .addField(
-            "Duration",
+            "Durée",
             `\`${prettyMilliseconds(track.duration, {
               colonNotation: true,
             })}\``,
@@ -169,7 +169,7 @@ class DiscordMusicBot extends Client {
       })
       .on("queueEnd", (player) => {
         let QueueEmbed = new MessageEmbed()
-          .setAuthor("The queue has ended", this.config.IconURL)
+          .setAuthor("La file d'attente est terminée", this.config.IconURL)
           .setColor("RANDOM")
           .setTimestamp();
         client.channels.cache.get(player.textChannel).send(QueueEmbed);
@@ -186,9 +186,9 @@ class DiscordMusicBot extends Client {
           let cmd = require(CommandsDir + "/" + file);
           if (!cmd.name || !cmd.description || !cmd.run)
             return this.log(
-              "Unable to load Command: " +
+              "Impossible de charger la commande : " +
                 file.split(".")[0] +
-                ", Reason: File doesn't had run/name/desciption"
+                ", Raison : File doesn't had run/name/desciption"
             );
           this.commands.set(file.split(".")[0].toLowerCase(), cmd);
           this.log("Command Loaded: " + file.split(".")[0]);
@@ -224,11 +224,11 @@ class DiscordMusicBot extends Client {
 
   sendError(Channel, Error) {
     let embed = new MessageEmbed()
-      .setTitle("An error occured")
+      .setTitle("Une erreur s'est produite")
       .setColor("RED")
       .setDescription(Error)
       .setFooter(
-        "If you think this as a bug, please report it in the support server!"
+        "Si vous pensez qu'il s'agit d'un bogue, veuillez le signaler sur le serveur de support !"
       );
 
     Channel.send(embed);
@@ -243,7 +243,7 @@ class DiscordMusicBot extends Client {
   build() {
     this.login(this.config.Token);
     if(this.config.ExpressServer){
-      this.http.listen(process.env.PORT || this.config.Port, () => this.log("Web Server has been started"));
+      this.http.listen(process.env.PORT || this.config.Port, () => this.log("Le serveur Web a été démarré"));
     }
   }
 
