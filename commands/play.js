@@ -89,7 +89,7 @@ module.exports = {
 
                     SongAddedEmbed.setThumbnail(Searched.tracks[0].displayThumbnail());
                     SongAddedEmbed.setDescription(`[${Searched.tracks[0].title}](${Searched.tracks[0].uri})`);
-                    SongAddedEmbed.addField("Auther", Searched.tracks[0].author, true);
+                    SongAddedEmbed.addField("Autheur", Searched.tracks[0].author, true);
                     SongAddedEmbed.addField("Durée", `\`${prettyMilliseconds(Searched.tracks[0].duration, { colonNotation: true })}\``, true);
                     if (player.queue.totalSize > 1) SongAddedEmbed.addField("Position dans la file d'attente", `${player.queue.size - 0}`, true);
                     Searching.edit(SongAddedEmbed);
