@@ -25,24 +25,24 @@ module.exports = {
     run: async (client, message, args, { GuildDB }) => {
 
         let player = await client.Manager.get(message.guild.id);
-        if (!player) return client.sendTime(message.channel, "❌ | **Rien ne joue en ce moment...**");
+        if (!player) return client.sendTime(message.channel, "❌ | **Rien n'est joué en ce moment...**");
         if (!message.member.voice.channel) return client.sendTime(message.channel, "❌ | **Vous devez être dans un canal vocal pour utiliser cette commande !**");
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return client.sendTime(message.channel, ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**");
 
-        if (!args[0]) return client.sendTime(message.channel, "**Veuillez fournir un niveau de bassboost. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"); //if the user do not provide args [arguments]
+        if (!args[0]) return client.sendTime(message.channel, "**Veuillez fournir le niveau d'amplification des basses. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"); //if the user do not provide args [arguments]
 
         let level = "none";
         if (args.length && args[0].toLowerCase() in levels) level = args[0].toLowerCase();
 
         player.setEQ(...new Array(3).fill(null).map((_, i) => ({ band: i, gain: levels[level] })));
 
-        return client.sendTime(message.channel, `✅ | **Niveau Bassboost réglé sur** \`${level}\``);
+        return client.sendTime(message.channel, `✅ | **Niveau d'amplification des basses réglé sur** \`${level}\``);
     },
     SlashCommand: {
         options: [
             {
                 name: "level",
-                description: `Veuillez fournir un niveau d'amplification des basses. Niveaux disponibles : low, medium, high, or none`,
+                description: `Veuillez fournir le niveau d'amplification des basses. Niveaux disponibles : low, medium, high, none`,
                 value: "[level]",
                 type: 3,
                 required: true,
@@ -71,14 +71,14 @@ module.exports = {
             if (!player) return client.sendTime(interaction, "❌ | **Rien n'est joué en ce moment...**");
             if (!member.voice.channel) return client.sendTime(interaction, "❌ | **Vous devez être dans un canal vocal pour utiliser cette commande.**");
             if (guild.me.voice.channel && !guild.me.voice.channel.equals(voiceChannel)) return client.sendTime(interaction, ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**");
-            if (!args) return client.sendTime(interaction, "**Veuillez fournir un niveau de bassboost. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"); //if the user do not provide args [arguments]
+            if (!args) return client.sendTime(interaction, "**Veuillez fournir le niveau d'amplification des basses. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"); //if the user do not provide args [arguments]
 
             let level = "none";
             if (args.length && args[0].value in levels) level = args[0].value;
 
             player.setEQ(...new Array(3).fill(null).map((_, i) => ({ band: i, gain: levels[level] })));
 
-            return client.sendTime(interaction, `✅ | **Réglez le niveau d'amplification des basses sur** \`${level}\``);
+            return client.sendTime(interaction, `✅ | **Réglage du niveau d'amplification des basses sur** \`${level}\``);
         },
     },
 };
