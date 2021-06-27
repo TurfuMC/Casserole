@@ -3,7 +3,7 @@ const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
   name: "grab",
-  description: "Saves the current song to your Direct Messages",
+  description: "Enregistre la chanson actuelle dans vos messages privés",
   usage: "",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -32,7 +32,7 @@ run: async (client, message, args, { GuildDB }) => {
   .setTitle(`**${player.queue.current.title}**`)
   .addField(`⌛ Durée: `, `\`${prettyMilliseconds(player.queue.current.duration, {colonNotation: true})}\``, true)
   .addField(`🎵 Auteur : `, `\`${player.queue.current.author}\``, true)
-  .addField(`▶ Joue-le:`, `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
+  .addField(`▶ Commande :`, `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
   }play ${player.queue.current.uri}\``)
   .addField(`🔎 Enregistré dans :`, `<#${message.channel.id}>`)
   .setFooter(`Demandé par : ${player.queue.current.requester.tag}`, player.queue.current.requester.displayAvatarURL({
@@ -68,12 +68,12 @@ run: async (client, message, args, { GuildDB }) => {
       .setColor("RANDOM")
       .setTimestamp()
       .setTitle(`**${player.queue.current.title}**`)
-      .addField(`⌛ Duration: `, `\`${prettyMilliseconds(player.queue.current.duration, {colonNotation: true})}\``, true)
-      .addField(`🎵 Author: `, `\`${player.queue.current.author}\``, true)
-      .addField(`▶ Play it:`, `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
+      .addField(`⌛ Durée : `, `\`${prettyMilliseconds(player.queue.current.duration, {colonNotation: true})}\``, true)
+      .addField(`🎵 Autheur : `, `\`${player.queue.current.author}\``, true)
+      .addField(`▶ Commande :`, `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
         }play ${player.queue.current.uri}\``)
-      .addField(`🔎 Saved in:`, `<#${interaction.channel_id}>`)
-      .setFooter(`Requested by: ${player.queue.current.requester.tag}`, player.queue.current.requester.displayAvatarURL({
+      .addField(`🔎 Enregistré dans :`, `<#${interaction.channel_id}>`)
+      .setFooter(`Demandé par : ${player.queue.current.requester.tag}`, player.queue.current.requester.displayAvatarURL({
         dynamic: true
       }))
       user.send(embed);

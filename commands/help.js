@@ -37,9 +37,9 @@ module.exports = {
             ).setDescription(`${Commands.join("\n")}
   
   Casserole version : v${require("../package.json").version}
-  [✨ Développer par la Turfu global developer team of TurfuMC](${
+  [✨ Editer par TurfuMC](${
     client.config.SupportServer
-  }) | [GitHub]https://github.com/TurfuMC) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
+  }) | [GitHub]https://github.com/TurfuMC) |`);
     if (!args[0]) message.channel.send(Embed);
     else {
       let cmd =
