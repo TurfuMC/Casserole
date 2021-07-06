@@ -26,7 +26,7 @@ module.exports = {
 
     let Embed = new MessageEmbed()
             .setAuthor(
-              `Commands of ${client.user.username}`,
+              `Commande de ${client.user.username}`,
               client.config.IconURL
             )
             .setColor("RANDOM")
@@ -117,8 +117,8 @@ SlashCommand: {
               }help [Command] | Bonne journée !`
             ).setDescription(`${Commands.join("\n")}
   
-            Discord Music Bot Version : v${require("../package.json").version}
-    [✨ Développer par la Turfu global developer team of TurfuMC](${
+            Casserole : v${require("../package.json").version}
+    [✨ Editer par TurfuMC](${
     client.config.SupportServer
   }) | [GitHub]https://github.com/TurfuMC) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
       if (!args) return interaction.send(Embed);

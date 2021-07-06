@@ -322,7 +322,7 @@ module.exports = {
               SongAddedEmbed.setThumbnail(track.displayThumbnail());
               SongAddedEmbed.setColor("RANDOM");
               SongAddedEmbed.setDescription(`[${track.title}](${track.uri})`);
-              SongAddedEmbed.addField("Autheur", track.author, true);
+              SongAddedEmbed.addField("Auteur", track.author, true);
               SongAddedEmbed.addField(
                 "Durée",
                 `\`${prettyMilliseconds(track.duration, {

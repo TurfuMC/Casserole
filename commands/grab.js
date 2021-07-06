@@ -69,7 +69,7 @@ run: async (client, message, args, { GuildDB }) => {
       .setTimestamp()
       .setTitle(`**${player.queue.current.title}**`)
       .addField(`⌛ Durée : `, `\`${prettyMilliseconds(player.queue.current.duration, {colonNotation: true})}\``, true)
-      .addField(`🎵 Autheur : `, `\`${player.queue.current.author}\``, true)
+      .addField(`🎵 Auteur : `, `\`${player.queue.current.author}\``, true)
       .addField(`▶ Commande :`, `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
         }play ${player.queue.current.uri}\``)
       .addField(`🔎 Enregistré dans :`, `<#${interaction.channel_id}>`)
