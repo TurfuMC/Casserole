@@ -3,20 +3,32 @@
 
 ## ✨Latest Updates✨
 
-> We are graciously waiting for Discord.js to update to v13 (as a stable version) so we can start updating the bot again. We know the bot has some bugs at the moment. 
+> We are aware that discord.js v13 has been released. V5 of the music bot currently has NO release date. Please join our discord for any updated news.
 >
-> We can't fix all of them right now. Please check out the latest list of updates, improvements, and fixes to be made in Version 5 in the Discussions section or by clicking [here](https://github.com/SudhanPlayz/Discord-MusicBot/discussions/236)
+>
+> Please check out the latest list of updates, improvements, and fixes to be made in Version 5 in the Discussions section or by clicking [here](https://github.com/SudhanPlayz/Discord-MusicBot/discussions/236)
 
-When you decide that you want to host this bot yourself, please do not expect this to work on the first try unless you know what you're doing. You need to know how to use the Discord Developer Portal as well as adding redirect_uri links to make your dashboard work properly. We try to help as best as we can, but please don't expect us to do it for you because are things that are required when using this bot.
+> ### DISCORD.JS v13 IS NOT COMPATIBLE WITH THIS BOT YET. IT WILL BREAK THIS BOT.
+> This will be compatible once v5 of the bot is out. 
+
+## ❗Prerequisites❗
+- [Node.js 14](https://nodejs.org/en/download/)
+- [Lavalink Server](https://github.com/freyacodes/Lavalink#server-configuration)
+
+`npm i`
+
+`npm install discord.js@12.5.3`
+
+> NOTE: This bot requires you to have knowledge of how to use Lavalink as well as utilizing it for music functionality
 
 
 ## 📝 Tutorial
 
-A Tutorial has been uploaded on YouTube <img src="https://www.youtube.com/about/static/svgs/icons/brand-resources/YouTube_icon_full-color.svg?cache=f2ec7a5" width="30px"> Watch it by clicking [here](https://www.youtube.com/watch?v=p4lP96Tiv9s)
+A Tutorial has been uploaded on YouTube, Watch it by clicking [here](https://www.youtube.com/watch?v=p4lP96Tiv9s)
 
-## 📝 [Support Server](https://discord.gg/a9SHDpD)
+## 📝 [Support Server](https://discord.gg/sbySMS7m3v)
 
-Do you have any issues with the bot? Head to our [Discord Server](https://discord.gg/a9SHDpD) where we can help you faster than creating a GitHub issue. If you have a major bug to report, it would be best to create an [issue here](https://github.com/SudhanPlayz/Discord-MusicBot/issues).
+Do you have any issues with the bot? Head to our [Discord Server](https://discord.gg/sbySMS7m3v) where we can help you faster than creating a GitHub issue. If you have a major bug to report, it would be best to create an [issue here](https://github.com/SudhanPlayz/Discord-MusicBot/issues).
 
 ## 📸 Screenshots
 
@@ -26,9 +38,9 @@ Do you have any issues with the bot? Head to our [Discord Server](https://discor
 
 ## 💨 Run the projects
 
-Glitch: [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/SudhanPlayz/Discord-MusicBot)
-Repl: [![Run on Repl.it](https://repl.it/badge/github/SudhanPlayz/Discord-MusicBot)](https://repl.it/github/SudhanPlayz/Discord-MusicBot)
-Heroku: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/SudhanPlayz/Discord-MusicBot)
+[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/SudhanPlayz/Discord-MusicBot)
+[![Run on Repl.it](https://repl.it/badge/github/SudhanPlayz/Discord-MusicBot)](https://repl.it/github/SudhanPlayz/Discord-MusicBot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/SudhanPlayz/Discord-MusicBot)
 
 ## ✨ Contributors
 

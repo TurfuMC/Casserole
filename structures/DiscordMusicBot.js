@@ -11,12 +11,12 @@ const Logger = require("./Logger");
 const prettyMilliseconds = require("pretty-ms");
 
 //Class extending Stuff
+require("discordjs-activity"); //Epic Package, For more details: https://www.npmjs.com/package/discordjs-activity
 require("./EpicPlayer"); //idk why im doing but i wanna learn something new so...
 
 class DiscordMusicBot extends Client {
   constructor(props) {
     super(props);
-    require("discordjs-activity")(this);//Epic Package, For more details: https://www.npmjs.com/package/discordjs-activity
 
     this.commands = new Collection();
     this.connections = new Map();
@@ -113,6 +113,10 @@ class DiscordMusicBot extends Client {
       {
         clientID: this.config.Spotify.ClientID,
         clientSecret: this.config.Spotify.ClientSecret,
+        playlistLoadLimit: 3,
+        audioOnlyResults: true,
+        autoResolve: true,
+        useSpotifyMetadata: true
       },
       [
         {
