@@ -33,7 +33,7 @@ module.exports = {
         message.channel,
         `**Usage - **\`${GuildDB.prefix}search [musique]\``
       );
-    let CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+    let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
     if (!CheckNode || !CheckNode.connected) {
       return client.sendTime(
         message.channel,
@@ -72,8 +72,8 @@ module.exports = {
         );
 
         let em = new MessageEmbed()
-          .setAuthor("Résultats de la recherche de " + SearchString, client.config.IconURL)
-          .setColor("RANDOM")
+          .setAuthor("Résultats de la recherche de " + SearchString, client.botconfig.IconURL)
+          .setColor(client.botconfig.EmbedColor)
           .setDescription(MappedSongs.join("\n\n"));
         return em;
       });
@@ -113,11 +113,11 @@ module.exports = {
       if (!player.playing && !player.paused && !player.queue.size)
         player.play();
       let SongAddedEmbed = new MessageEmbed();
-      SongAddedEmbed.setAuthor(`Ajouté à la file d'attente`, client.config.IconURL);
+      SongAddedEmbed.setAuthor(`Ajouté à la file d'attente`, client.botconfig.IconURL);
       SongAddedEmbed.setThumbnail(Song.displayThumbnail());
-      SongAddedEmbed.setColor("RANDOM");
+      SongAddedEmbed.setColor(client.botconfig.EmbedColor);
       SongAddedEmbed.setDescription(`[${Song.title}](${Song.uri})`);
-      SongAddedEmbed.addField("Auther", `${Song.author}`, true);
+      SongAddedEmbed.addField("Auteur", `${Song.author}`, true);
       SongAddedEmbed.addField(
         "Durée",
         `\`${prettyMilliseconds(player.queue.current.duration, {
@@ -170,7 +170,7 @@ module.exports = {
           interaction,
           ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
         );
-      let CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+      let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
       if (!CheckNode || !CheckNode.connected) {
         return client.sendTime(
           interaction,
@@ -189,7 +189,7 @@ module.exports = {
 
       if (search.match(client.Lavasfy.spotifyPattern)) {
         await client.Lavasfy.requestToken();
-        let node = client.Lavasfy.nodes.get(client.config.Lavalink.id);
+        let node = client.Lavasfy.nodes.get(client.botconfig.Lavalink.id);
         let Searched = await node.load(search);
 
         switch (Searched.loadType) {
@@ -283,8 +283,8 @@ module.exports = {
               .setDescription(
                 `${results}\n\n\t**Tapez le numéro de la chanson que vous voulez jouer !**\n`
               )
-              .setColor("RANDOM")
-              .setAuthor(`Résultats de recherche pour ${search}`, client.config.IconURL);
+              .setColor(client.botconfig.EmbedColor)
+              .setAuthor(`Résultats de recherche pour ${search}`, client.botconfig.IconURL);
             interaction.send(resultss);
             try {
               collected = await awaitchannel.awaitMessages(filter, {
@@ -318,9 +318,9 @@ module.exports = {
               player.play();
             } else {
               let SongAddedEmbed = new MessageEmbed();
-              SongAddedEmbed.setAuthor(`Ajouté à la file d'attente `, client.config.IconURL);
+              SongAddedEmbed.setAuthor(`Ajouté à la file d'attente`, client.botconfig.IconURL);
               SongAddedEmbed.setThumbnail(track.displayThumbnail());
-              SongAddedEmbed.setColor("RANDOM");
+              SongAddedEmbed.setColor(client.botconfig.EmbedColor);
               SongAddedEmbed.setDescription(`[${track.title}](${track.uri})`);
               SongAddedEmbed.addField("Auteur", track.author, true);
               SongAddedEmbed.addField(

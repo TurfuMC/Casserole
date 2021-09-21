@@ -68,7 +68,7 @@ module.exports = {
       let awaitchannel = client.channels.cache.get(interaction.channel_id); /// thanks Reyansh for this idea ;-;
       if (!member.voice.channel) return client.sendTime(interaction, "❌ | **Vous devez être dans un canal vocal pour utiliser cette commande.**");
       if (guild.me.voice.channel && !guild.me.voice.channel.equals(member.voice.channel)) return client.sendTime(interaction, `:x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**`);
-      let CheckNode = client.Manager.nodes.get(client.config.Lavalink.id);
+      let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
       if (!CheckNode || !CheckNode.connected) {
         return client.sendTime(interaction, "❌ | **Nœud Lavallink non connecté c'est la merde**");
       }

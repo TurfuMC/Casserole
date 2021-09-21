@@ -19,7 +19,7 @@ module.exports = {
    run: async (client, message, args, { GuildDB }) => {
     let Commands = client.commands.map(
       (cmd) =>
-        `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix}${
+        `\`${GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix}${
           cmd.name
         }${cmd.usage ? " " + cmd.usage : ""}\` - ${cmd.description}`
     );
@@ -29,17 +29,17 @@ module.exports = {
               `Commande de ${client.user.username}`,
               client.config.IconURL
             )
-            .setColor("RANDOM")
+            .setColor(client.botconfig.EmbedColor)
             .setFooter(
               `Pour obtenir des informations sur chaque type de commande ${
-                GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
-              }help [Command] | Bonne journée !`
+                GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
+              }help [Commande] | Bonne journée !`
             ).setDescription(`${Commands.join("\n")}
   
-  Casserole version : v${require("../package.json").version}
-  [✨ Editer par TurfuMC](${
-    client.config.SupportServer
-  }) | [GitHub]https://github.com/TurfuMC) |`);
+  Casserole : v${require("../package.json").version}
+  [✨ Serveur de support](${
+    client.botconfig.SupportServer
+  }) | [GitHub](https://github.com/TurfuMC/Casserole) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
     if (!args[0]) message.channel.send(Embed);
     else {
       let cmd =
@@ -56,7 +56,7 @@ module.exports = {
         .addField("Alias", `\`${cmd.aliases.join(", ")}\``, true)
         .addField(
           "Usage",
-          `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix}${
+          `\`${GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix}${
             cmd.name
           }${cmd.usage ? " " + cmd.usage : ""}\``,
           true
@@ -71,7 +71,7 @@ module.exports = {
         )
         .setFooter(
           `Prefix - ${
-            GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
+            GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
           }`
         );
 
@@ -100,7 +100,7 @@ SlashCommand: {
     run: async (client, interaction, args, { GuildDB }) => {
       let Commands = client.commands.map(
         (cmd) =>
-          `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix}${
+          `\`${GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix}${
             cmd.name
           }${cmd.usage ? " " + cmd.usage : ""}\` - ${cmd.description}`
       );
@@ -110,7 +110,7 @@ SlashCommand: {
               `Commandes de ${client.user.username}`,
               client.config.IconURL
             )
-            .setColor("RANDOM")
+            .setColor(client.botconfig.EmbedColor)
             .setFooter(
               `Pour obtenir des informations sur chaque type de commande ${
                 GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
@@ -130,14 +130,14 @@ SlashCommand: {
           return client.sendTime(interaction, `❌ | Impossible de trouver cette commande.`);
   
         let embed = new MessageEmbed()
-          .setAuthor(`Command: ${cmd.name}`, client.config.IconURL)
+          .setAuthor(`Command: ${cmd.name}`, client.botconfig.IconURL)
           .setDescription(cmd.description)
           .setColor("GREEN")
           //.addField("Name", cmd.name, true)
           .addField("Aliases", cmd.aliases.join(", "), true)
           .addField(
             "Usage",
-            `\`${GuildDB ? GuildDB.prefix : client.config.DefaultPrefix}${
+            `\`${GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix}${
               cmd.name
             }\`${cmd.usage ? " " + cmd.usage : ""}`,
             true
@@ -152,7 +152,7 @@ SlashCommand: {
           )
           .setFooter(
             `Prefix - ${
-              GuildDB ? GuildDB.prefix : client.config.DefaultPrefix
+              GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
             }`
           );
   

@@ -31,14 +31,14 @@ class DiscordMusicBot extends Client {
 
     try {
       //Config for testing
-      this.config = require("../dev-config");
+      this.botconfig = require("../dev-config");
     } catch {
       //Config for production
-      this.config = require("../config");
+      this.botconfig = require("../botconfig");
     }
-    if (this.config.Token === "")
+    if (this.botconfig.Token === "")
       return new TypeError(
-        "Veuillez remplir les informations dans le fichier config.js."
+        "Le botconfig.js n'est pas rempli. Veuillez vous assurer que rien n'est vide, sinon le bot ne fonctionnera pas correctement."
       );
 
     this.LoadCommands();
@@ -74,7 +74,7 @@ class DiscordMusicBot extends Client {
       //Initialize GuildDB
       if (!GuildDB) {
         await this.database.guild.set(interaction.guild_id, {
-          prefix: this.config.DefaultPrefix,
+          prefix: this.botconfig.DefaultPrefix,
           DJ: null,
         });
         GuildDB = await this.GetGuild(interaction.guild_id);
@@ -111,19 +111,20 @@ class DiscordMusicBot extends Client {
 
     this.Lavasfy = new LavasfyClient(
       {
-        clientID: this.config.Spotify.ClientID,
-        clientSecret: this.config.Spotify.ClientSecret,
-        playlistLoadLimit: 3,
-        audioOnlyResults: true,
+        clientID: this.botconfig.Spotify.ClientID,
+        clientSecret: this.botconfig.Spotify.ClientSecret,
+        playlistPageLoadLimit: 3,
+        filterAudioOnlyResult: true,
         autoResolve: true,
         useSpotifyMetadata: true
       },
       [
         {
-          id: this.config.Lavalink.id,
-          host: this.config.Lavalink.host,
-          port: this.config.Lavalink.port,
-          password: this.config.Lavalink.pass,
+          id: this.botconfig.Lavalink.id,
+          host: this.botconfig.Lavalink.host,
+          port: this.botconfig.Lavalink.port,
+          password: this.botconfig.Lavalink.pass,
+          secure: this.botconfig.Lavalink.secure,
         },
       ]
     );
@@ -131,10 +132,11 @@ class DiscordMusicBot extends Client {
     this.Manager = new Manager({
       nodes: [
         {
-          identifier: this.config.Lavalink.id,
-          host: this.config.Lavalink.host,
-          port: this.config.Lavalink.port,
-          password: this.config.Lavalink.pass,
+          identifier: this.botconfig.Lavalink.id,
+          host: this.botconfig.Lavalink.host,
+          port: this.botconfig.Lavalink.port,
+          password: this.botconfig.Lavalink.pass,
+          secure: this.botconfig.Lavalink.secure,
         },
       ],
       send(id, payload) {
@@ -153,7 +155,7 @@ class DiscordMusicBot extends Client {
       .on("trackStart", async (player, track) => {
         this.SongsPlayed++;
         let TrackStartedEmbed = new MessageEmbed()
-          .setAuthor(`Lecture en cours ♪`, this.config.IconURL)
+          .setAuthor(`Lecture en cours ♪`, this.botconfig.IconURL)
           .setThumbnail(player.queue.current.displayThumbnail())
           .setDescription(`[${track.title}](${track.uri})`)
           .addField("Demandé par", `${track.requester}`, true)
@@ -164,7 +166,7 @@ class DiscordMusicBot extends Client {
             })}\``,
             true
           )
-          .setColor("RANDOM");
+          .setColor(this.botconfig.EmbedColor);
         //.setFooter("Started playing at");
         let NowPlaying = await client.channels.cache
           .get(player.textChannel)
@@ -173,11 +175,11 @@ class DiscordMusicBot extends Client {
       })
       .on("queueEnd", (player) => {
         let QueueEmbed = new MessageEmbed()
-          .setAuthor("La file d'attente est terminée", this.config.IconURL)
-          .setColor("RANDOM")
+          .setAuthor("La file d'attente est terminée", this.botconfig.IconURL)
+          .setColor(this.botconfig.EmbedColor)
           .setTimestamp();
         client.channels.cache.get(player.textChannel).send(QueueEmbed);
-        if (!this.config["24/7"]) player.destroy();
+        if (!this.botconfig["24/7"]) player.destroy();
       });
   }
 
@@ -239,15 +241,15 @@ class DiscordMusicBot extends Client {
   }
 
   sendTime(Channel, Error) {
-    let embed = new MessageEmbed().setColor("RANDOM").setDescription(Error);
+    let embed = new MessageEmbed().setColor(this.botconfig.EmbedColor).setDescription(Error);
 
     Channel.send(embed);
   }
 
   build() {
-    this.login(this.config.Token);
-    if(this.config.ExpressServer){
-      this.http.listen(process.env.PORT || this.config.Port, () => this.log("Le serveur Web a été démarré"));
+    this.login(this.botconfig.Token);
+    if(this.botconfig.ExpressServer){
+      this.http.listen(process.env.PORT || this.botconfig.Port, () => this.log("Le serveur Web a été démarré"));
     }
   }
 

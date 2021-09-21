@@ -30,7 +30,7 @@ const { TrackUtils } = require("erela.js");
     let rm = new MessageEmbed()
       .setDescription(`✅ **|** Piste supprimée **\`${Number(args[0])}\`** de la file d'attente !`)
       .setColor("GREEN")
-      if (isNaN(args[0]))rm.setDescription(`**Usage - **${client.config.prefix}\`remove [piste]\``);
+      if (isNaN(args[0]))rm.setDescription(`**Usage - **${client.botconfig.prefix}\`remove [piste]\``);
       if (args[0] > player.queue.length)
       rm.setDescription(`La file d'attente n'a que ${player.queue.length} musiques !`);
     await message.channel.send(rm);

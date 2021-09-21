@@ -28,8 +28,8 @@ module.exports = {
 
     if (!player.queue || !player.queue.length || player.queue === 0) {
       let QueueEmbed = new MessageEmbed()
-        .setAuthor("Joué actuellement", client.config.IconURL)
-        .setColor("RANDOM")
+        .setAuthor("Joué actuellement", client.botconfig.IconURL)
+        .setColor(client.botconfig.EmbedColor)
         .setDescription(
           `[${player.queue.current.title}](${player.queue.current.uri})`
         )
@@ -71,8 +71,8 @@ module.exports = {
       ).join("\n");
 
       let Embed = new MessageEmbed()
-        .setAuthor("File d'attente", client.config.IconURL)
-        .setColor("RANDOM")
+        .setAuthor("File d'attente", client.botconfig.IconURL)
+        .setColor(client.botconfig.EmbedColor)
         .setDescription(
           `**Joué actuellement :** \n[${player.queue.current.title}](${player.queue.current.uri}) \n\n**Suivant :** \n${SongsDescription}\n\n`
         )
@@ -134,8 +134,8 @@ module.exports = {
 
       if (!player.queue || !player.queue.length || player.queue === 0) {
         let QueueEmbed = new MessageEmbed()
-          .setAuthor("Joué actuellement", client.config.IconURL)
-          .setColor("RANDOM")
+          .setAuthor("Joué actuellement", client.botconfig.IconURL)
+          .setColor(client.botconfig.EmbedColor)
           .setDescription(
             `[${player.queue.current.title}](${player.queue.current.uri})`
           )
@@ -176,8 +176,8 @@ module.exports = {
         ).join("\n");
 
         let Embed = new MessageEmbed()
-          .setAuthor("File d'attente", client.config.IconURL)
-          .setColor("RANDOM")
+          .setAuthor("File d'attente", client.botconfig.IconURL)
+          .setColor(client.botconfig.EmbedColor)
           .setDescription(
             `**Joué actuellement:** \n[${player.queue.current.title}](${player.queue.current.uri}) \n\n**Suivant :** \n${SongsDescription}\n\n`
           )
