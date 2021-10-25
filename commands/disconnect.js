@@ -18,9 +18,17 @@ module.exports = {
    */
   run: async (client, message, args, { GuildDB }) => {
     let player = await client.Manager.get(message.guild.id);
-    if (!message.member.voice.channel) return client.sendTime(message.channel, "❌ | **Vous devez être dans un canal vocal utilisez cette commande**");
-    if (!player) return client.sendTime(message.channel,"❌ | **Rien n'est joué en ce moment...**");
-    await client.sendTime(message.channel,":notes: | **Déconnecter !**");
+    if (!message.member.voice.channel)
+      return client.sendTime(
+        message.channel,
+        "❌ | **Vous devez être dans un canal vocal utilisez cette commande**"
+      );
+    if (!player)
+      return client.sendTime(
+        message.channel,
+        "❌ | **Rien n'est joué en ce moment...**"
+      );
+    await client.sendTime(message.channel, ":notes: | **Déconnecter !**");
     await message.react("✅");
     player.destroy();
   },
@@ -58,10 +66,7 @@ module.exports = {
           "❌ | **Rien n'est joué en ce moment...**"
         );
       player.destroy();
-      client.sendTime(
-        interaction,
-        ":notes: | **Déconnecter !**"
-      );
+      client.sendTime(interaction, ":notes: | **Déconnecter !**");
     },
   },
 };

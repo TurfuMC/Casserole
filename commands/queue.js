@@ -20,7 +20,7 @@ module.exports = {
    */
   run: async (client, message, args, { GuildDB }) => {
     let player = await client.Manager.get(message.guild.id);
-    if (!player)
+    if (!player.queue.current)
       return client.sendTime(
         message.channel,
         "❌ | **Rien n'est joué en ce moment...**"
@@ -130,7 +130,10 @@ module.exports = {
     run: async (client, interaction, args, { GuildDB }) => {
       let player = await client.Manager.get(interaction.guild_id);
       if (!player)
-        return client.sendTime(interaction, "❌ | **Rien n'est joué en ce moment...**");
+        return client.sendTime(
+          interaction,
+          "❌ | **Rien n'est joué en ce moment...**"
+        );
 
       if (!player.queue || !player.queue.length || player.queue === 0) {
         let QueueEmbed = new MessageEmbed()

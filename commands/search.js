@@ -25,7 +25,14 @@ module.exports = {
         message.channel,
         "❌ | **Vous devez être dans un canal vocal pour jouer quelque chose !**"
       );
-      if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return client.sendTime(message.channel, ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**");
+    if (
+      message.guild.me.voice.channel &&
+      message.member.voice.channel.id !== message.guild.me.voice.channel.id
+    )
+      return client.sendTime(
+        message.channel,
+        ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+      );
 
     let SearchString = args.join(" ");
     if (!SearchString)
@@ -44,7 +51,8 @@ module.exports = {
       guild: message.guild.id,
       voiceChannel: message.member.voice.channel.id,
       textChannel: message.channel.id,
-      selfDeafen: false,
+      selfDeafen: client.botconfig.ServerDeafen,
+      volume: client.botconfig.DefaultVolume,
     });
 
     if (player.state != "CONNECTED") await player.connect();
@@ -72,7 +80,10 @@ module.exports = {
         );
 
         let em = new MessageEmbed()
-          .setAuthor("Résultats de la recherche de " + SearchString, client.botconfig.IconURL)
+          .setAuthor(
+            "Résultats de la recherche de " + SearchString,
+            client.botconfig.IconURL
+          )
           .setColor(client.botconfig.EmbedColor)
           .setDescription(MappedSongs.join("\n\n"));
         return em;
@@ -106,9 +117,16 @@ module.exports = {
       let SongIDmsg = SongID.first();
 
       if (!parseInt(SongIDmsg.content))
-        return client.sendTime(message.channel, "Veuillez envoyer le bon numéro d'identification de la chanson");
+        return client.sendTime(
+          message.channel,
+          "Veuillez envoyer le bon numéro d'identification de la chanson"
+        );
       let Song = Searched.tracks[parseInt(SongIDmsg.content) - 1];
-      if (!Song) return client.sendTime(message.channel, "Aucune chanson trouvée pour l'ID donné");
+      if (!Song)
+        return client.sendTime(
+          message.channel,
+          "Aucune chanson trouvée pour l'ID donné"
+        );
       player.queue.add(Song);
       if (!player.playing && !player.paused && !player.queue.size)
         player.play();
@@ -181,7 +199,8 @@ module.exports = {
         guild: interaction.guild_id,
         voiceChannel: voiceChannel.id,
         textChannel: interaction.channel_id,
-        selfDeafen: false,
+        selfDeafen: client.botconfig.ServerDeafen,
+        volume: client.botconfig.DefaultVolume,
       });
       if (player.state != "CONNECTED") await player.connect();
       let search = interaction.data.options[0].value;
@@ -195,17 +214,24 @@ module.exports = {
         switch (Searched.loadType) {
           case "LOAD_FAILED":
             if (!player.queue.current) player.destroy();
-            return client.sendError(interaction, `:x: | **Une erreur s'est produite lors de la recherche. Je savais que faire travailler les chinois c'étais pas une bonne idée**`);
+            return client.sendError(
+              interaction,
+              `:x: | **Une erreur s'est produite lors de la recherche. Je savais que faire travailler les chinois c'étais pas une bonne idée** https://tenor.com/view/its-just-not-working-out-eric-cartman-south-park-s6e6-professor-chaos-gif-22246091`
+            );
 
           case "NO_MATCHES":
             if (!player.queue.current) player.destroy();
-            return client.sendTime(interaction, ":x: | **Aucun resultat n'a été trouvé**");
+            return client.sendTime(
+              interaction,
+              ":x: | **Aucun resultat n'a été trouvé**"
+            );
           case "TRACK_LOADED":
             player.queue.add(TrackUtils.build(Searched.tracks[0], member.user));
             if (!player.playing && !player.paused && !player.queue.length)
               player.play();
             return client.sendTime(
-              interaction, `**Ajouté à la file d'attente :** \`[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri}}\`.`
+              interaction,
+              `**Ajouté à la file d'attente:** \`[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri}}\`.`
             );
 
           case "PLAYLIST_LOADED":
@@ -221,7 +247,8 @@ module.exports = {
             )
               player.play();
             return client.sendTime(
-              interaction, `**Playlist Ajouté à la file d'attente **: \n**${Searched.playlist.name}** \nEn file d'attente: **${Searched.playlistInfo.length} musiques**`
+              interaction,
+              `**Playlist Ajouté à la file d'attente**: \n**${Searched.playlist.name}** \nEn file d'attente: **${Searched.playlistInfo.length} musiques**`
             );
         }
       } else {
@@ -233,19 +260,24 @@ module.exports = {
           }
         } catch (err) {
           return client.sendTime(
-            interaction, `:x: | **Une erreur s'est produite lors de la recherche :** ${err.message}`
+            interaction,
+            `:x: | **Une erreur s'est produite lors de la recherche :** ${err.message}`
           );
         }
         switch (res.loadType) {
           case "NO_MATCHES":
             if (!player.queue.current) player.destroy();
-            return client.sendTime(interaction, ":x: | **Aucun resultat n'a été trouvé**");
+            return client.sendTime(
+              interaction,
+              ":x: | **Aucun resultat n'a été trouvé**"
+            );
           case "TRACK_LOADED":
             player.queue.add(res.tracks[0]);
             if (!player.playing && !player.paused && !player.queue.length)
               player.play();
             return client.sendTime(
-              interaction, `**Ajouté à la file d'attente :** \`[${res.tracks[0].title}](${res.tracks[0].uri})\`.`
+              interaction,
+              `**Ajouté à la file d'attente :** \`[${res.tracks[0].title}](${res.tracks[0].uri})\`.`
             );
           case "PLAYLIST_LOADED":
             player.queue.add(res.tracks);
@@ -257,7 +289,8 @@ module.exports = {
             )
               player.play();
             return client.sendTime(
-              interaction, `**Playlist Ajouté à la file d'attente **: \n**${res.playlist.name}** \nEn file d'attente: **${res.playlistInfo.length} musiques**`
+              interaction,
+              `**Playlist Ajouté à la file d'attente**: \n**${res.playlist.name}** \nEn file d'attente : **${res.playlistInfo.length} musiques**`
             );
           case "SEARCH_RESULT":
             let max = 10,
@@ -284,7 +317,10 @@ module.exports = {
                 `${results}\n\n\t**Tapez le numéro de la chanson que vous voulez jouer !**\n`
               )
               .setColor(client.botconfig.EmbedColor)
-              .setAuthor(`Résultats de recherche pour ${search}`, client.botconfig.IconURL);
+              .setAuthor(
+                `Résultats de recherche pour ${search}`,
+                client.botconfig.IconURL
+              );
             interaction.send(resultss);
             try {
               collected = await awaitchannel.awaitMessages(filter, {
@@ -318,7 +354,10 @@ module.exports = {
               player.play();
             } else {
               let SongAddedEmbed = new MessageEmbed();
-              SongAddedEmbed.setAuthor(`Ajouté à la file d'attente`, client.botconfig.IconURL);
+              SongAddedEmbed.setAuthor(
+                `Ajouté à la file d'attente`,
+                client.botconfig.IconURL
+              );
               SongAddedEmbed.setThumbnail(track.displayThumbnail());
               SongAddedEmbed.setColor(client.botconfig.EmbedColor);
               SongAddedEmbed.setDescription(`[${track.title}](${track.uri})`);
@@ -330,7 +369,12 @@ module.exports = {
                 })}\``,
                 true
               );
-              if (player.queue.totalSize > 1) SongAddedEmbed.addField("Position dans la file d'attente", `${player.queue.size - 0}`, true);
+              if (player.queue.totalSize > 1)
+                SongAddedEmbed.addField(
+                  "Position dans la file d'attente",
+                  `${player.queue.size - 0}`,
+                  true
+                );
               awaitchannel.send(SongAddedEmbed);
             }
         }

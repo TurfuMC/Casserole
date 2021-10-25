@@ -16,7 +16,7 @@ module.exports = {
    * @param {string[]} args
    * @param {*} param3
    */
-   run: async (client, message, args, { GuildDB }) => {
+  run: async (client, message, args, { GuildDB }) => {
     let Commands = client.commands.map(
       (cmd) =>
         `\`${GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix}${
@@ -46,7 +46,10 @@ module.exports = {
         client.commands.get(args[0]) ||
         client.commands.find((x) => x.aliases && x.aliases.includes(args[0]));
       if (!cmd)
-        return client.sendTime(message.channel, `❌ | Impossible de trouver cette commande.`);
+        return client.sendTime(
+          message.channel,
+          `❌ | Impossible de trouver cette commande.`
+        );
 
       let embed = new MessageEmbed()
         .setAuthor(`Commande : ${cmd.name}`, client.config.IconURL)
@@ -79,23 +82,23 @@ module.exports = {
     }
   },
 
-SlashCommand: {
+  SlashCommand: {
     options: [
       {
         name: "command",
         description: "Obtenir des informations sur une commande spécifique",
         value: "command",
         type: 3,
-        required: false
+        required: false,
       },
     ],
     /**
-   *
-   * @param {import("../structures/DiscordMusicBot")} client
-   * @param {import("discord.js").Message} message
-   * @param {string[]} args
-   * @param {*} param3
-   */
+     *
+     * @param {import("../structures/DiscordMusicBot")} client
+     * @param {import("discord.js").Message} message
+     * @param {string[]} args
+     * @param {*} param3
+     */
 
     run: async (client, interaction, args, { GuildDB }) => {
       let Commands = client.commands.map(
@@ -104,7 +107,7 @@ SlashCommand: {
             cmd.name
           }${cmd.usage ? " " + cmd.usage : ""}\` - ${cmd.description}`
       );
-  
+
       let Embed = new MessageEmbed()
             .setAuthor(
               `Commandes de ${client.user.username}`,
@@ -125,10 +128,15 @@ SlashCommand: {
       else {
         let cmd =
           client.commands.get(args[0].value) ||
-          client.commands.find((x) => x.aliases && x.aliases.includes(args[0].value));
+          client.commands.find(
+            (x) => x.aliases && x.aliases.includes(args[0].value)
+          );
         if (!cmd)
-          return client.sendTime(interaction, `❌ | Impossible de trouver cette commande.`);
-  
+          return client.sendTime(
+            interaction,
+            `❌ | Impossible de trouver cette commande.`
+          );
+
         let embed = new MessageEmbed()
           .setAuthor(`Command: ${cmd.name}`, client.botconfig.IconURL)
           .setDescription(cmd.description)
@@ -155,8 +163,9 @@ SlashCommand: {
               GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
             }`
           );
-  
+
         interaction.send(embed);
       }
+    },
   },
-}};
+};

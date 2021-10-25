@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "invite",
@@ -36,30 +36,29 @@ module.exports = {
   },
   SlashCommand: {
     /**
-   *
-   * @param {import("../structures/DiscordMusicBot")} client
-   * @param {import("discord.js").Message} message
-   * @param {string[]} args
-   * @param {*} param3
-   */
-  run: async (client, interaction, args, { GuildDB }) => {
-    let embed = new MessageEmbed()
-      .setAuthor(
-        "Inviter " + client.user.tag + " sur ton serveur !",
-        client.user.displayAvatarURL()
-      )
-      .setColor("BLUE")
-      .setDescription(
-        `Vous pouvez m'inviter en cliquant [ici](https://discord.com/oauth2/authorize?client_id=${
-          client.botconfig.ClientID
-        }&permissions=${
-          client.botconfig.Permissions
-        }&scope=bot%20${client.botconfig.Scopes.join("%20")}&redirect_url=${
-          client.botconfig.Website
-        }${client.botconfig.CallbackURL}&response_type=code)`
-      );
-    interaction.send(embed);
-  },
+     *
+     * @param {import("../structures/DiscordMusicBot")} client
+     * @param {import("discord.js").Message} message
+     * @param {string[]} args
+     * @param {*} param3
+     */
+    run: async (client, interaction, args, { GuildDB }) => {
+      let embed = new MessageEmbed()
+        .setAuthor(
+          "Invite " + client.user.tag + " sur ton erveur !",
+          client.user.displayAvatarURL()
+        )
+        .setColor("BLUE")
+        .setDescription(
+          `Vous pouvez m'inviter en cliquan [here](https://discord.com/oauth2/authorize?client_id=${
+            client.botconfig.ClientID
+          }&permissions=${
+            client.botconfig.Permissions
+          }&scope=bot%20${client.botconfig.Scopes.join("%20")}&redirect_url=${
+            client.botconfig.Website
+          }${client.botconfig.CallbackURL}&response_type=code)`
+        );
+      interaction.send(embed);
+    },
   },
 };
-
