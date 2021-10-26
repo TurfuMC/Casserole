@@ -27,7 +27,7 @@ module.exports = {
     if (!player)
       return client.sendTime(
         message.channel,
-        "❌ | **Rien n'est joué en ce moment...**"
+        "❌ | **Rien ne joue en ce moment...**"
       );
     if (!message.member.voice.channel)
       return client.sendTime(
@@ -61,14 +61,14 @@ module.exports = {
 
     return client.sendTime(
       message.channel,
-      `✅ | **Niveau Bassboost réglé sur** \`${level}\``
+      `✅ | **Niveau Bass Boost réglé sur** \`${level}\``
     );
   },
   SlashCommand: {
     options: [
       {
         name: "level",
-        description: `Veuillez fournir un niveau d'amplification des basses. Niveaux disponibles : low, medium, high, ou none`,
+        description: `Veuillez fournir un niveau d'amplification des basses. Niveaux disponibles : low, medium, high, or none`,
         value: "[level]",
         type: 3,
         required: true,
@@ -97,12 +97,12 @@ module.exports = {
       if (!player)
         return client.sendTime(
           interaction,
-          "❌ | **Rien n'est joué en ce moment...**"
+          "❌ | **Rien ne joue en ce moment...**"
         );
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | **Vous devez être dans un canal vocal pour utiliser cette commande.**"
+          "❌ | **You must be in a voice channel to use this command.**"
         );
       if (
         guild.me.voice.channel &&
@@ -110,12 +110,12 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+          ":x: | **Vous devez être dans un canal vocal pour utiliser cette commande !**"
         );
       if (!args)
         return client.sendTime(
           interaction,
-          "**Veuillez fournir le niveau d'amplification des basses. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"
+          "**Veuillez fournir un niveau d'amplification des basses. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"
         ); //if the user do not provide args [arguments]
 
       let level = "none";
