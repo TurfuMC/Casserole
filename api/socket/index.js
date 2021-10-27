@@ -27,7 +27,7 @@ module.exports = (io) => {
         const Client = require("../../index");
         if (!Client.Ready) return;
         let Guild = Client.guilds.cache.get(ServerID);
-        if (!Guild) return socket.emit("error", "Unable to find that server");
+        if (!Guild) return socket.emit("error", "Impossible de trouver ce serveur");
         let GuildDB = await Client.GetGuild(Guild.id);
         let player = Client.Manager.get(Guild.id);
         if (!player) {

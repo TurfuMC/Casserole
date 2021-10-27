@@ -41,7 +41,7 @@ class DiscordMusicBot extends Client {
     }
     if (this.botconfig.Token === "")
       return new TypeError(
-        "The botconfig.js is not filled out. Please make sure nothing is blank, otherwise the bot will not work properly."
+        "Le botconfig.js n'est pas rempli. Veuillez vous assurer que rien n'est vide, sinon le bot ne fonctionnera pas correctement."
       );
 
     this.LoadCommands();
@@ -153,22 +153,22 @@ class DiscordMusicBot extends Client {
       },
     })
       .on("nodeConnect", (node) =>
-        this.log(`Lavalink: Node ${node.options.identifier} connected`)
+        this.log(`Lavalink: Node ${node.options.identifier} connecté`)
       )
       .on("nodeError", (node, error) =>
         this.log(
-          `Lavalink: Node ${node.options.identifier} had an error: ${error.message}`
+          `Lavalink: Node ${node.options.identifier} eu une erreur : ${error.message}`
         )
       )
       .on("trackStart", async (player, track) => {
         this.SongsPlayed++;
         let TrackStartedEmbed = new MessageEmbed()
-          .setAuthor(`Now playing ♪`, this.botconfig.IconURL)
+          .setAuthor(`Lecture en cours ♪`, this.botconfig.IconURL)
           .setThumbnail(player.queue.current.displayThumbnail())
           .setDescription(`[${track.title}](${track.uri})`)
-          .addField("Requested by", `${track.requester}`, true)
+          .addField("Demandé par", `${track.requester}`, true)
           .addField(
-            "Duration",
+            "Durée",
             `\`${prettyMilliseconds(track.duration, {
               colonNotation: true,
             })}\``,
@@ -183,7 +183,7 @@ class DiscordMusicBot extends Client {
       })
       .on("queueEnd", (player) => {
         let QueueEmbed = new MessageEmbed()
-          .setAuthor("The queue has ended", this.botconfig.IconURL)
+          .setAuthor("La file d'attente est terminée", this.botconfig.IconURL)
           .setColor(this.botconfig.EmbedColor)
           .setTimestamp();
         client.channels.cache.get(player.textChannel).send(QueueEmbed);
@@ -205,7 +205,7 @@ class DiscordMusicBot extends Client {
                 ", Reason: File doesn't had run/name/desciption"
             );
           this.commands.set(file.split(".")[0].toLowerCase(), cmd);
-          this.log("Command Loaded: " + file.split(".")[0]);
+          this.log("Commande chargée : " + file.split(".")[0]);
         });
     });
   }
@@ -218,7 +218,7 @@ class DiscordMusicBot extends Client {
         files.forEach((file) => {
           const event = require(EventsDir + "/" + file);
           this.on(file.split(".")[0], event.bind(null, this));
-          this.logger.log("Event Loaded: " + file.split(".")[0]);
+          this.logger.log("Événement chargé : " + file.split(".")[0]);
         });
     });
   }
@@ -238,11 +238,11 @@ class DiscordMusicBot extends Client {
 
   sendError(Channel, Error) {
     let embed = new MessageEmbed()
-      .setTitle("An error occured")
+      .setTitle("Une erreur s'est produite")
       .setColor("RED")
       .setDescription(Error)
       .setFooter(
-        "If you think this as a bug, please report it in the support server!"
+        "Si vous pensez qu'il s'agit d'un bug, veuillez le signaler !"
       );
 
     Channel.send(embed);
@@ -260,7 +260,7 @@ class DiscordMusicBot extends Client {
     this.login(this.botconfig.Token);
     if (this.botconfig.ExpressServer) {
       this.http.listen(process.env.PORT || this.botconfig.Port, () =>
-        this.log("Web Server has been started")
+        this.log("Le serveur Web a été démarré")
       );
     }
   }
