@@ -61,14 +61,14 @@ module.exports = {
 
     return client.sendTime(
       message.channel,
-      `✅ | **Niveau Bass Boost réglé sur** \`${level}\``
+      `✅ | ***Niveau d'amplification des basses réglé sur** \`${level}\``
     );
   },
   SlashCommand: {
     options: [
       {
         name: "level",
-        description: `Veuillez fournir un niveau d'amplification des basses. Niveaux disponibles : low, medium, high, or none`,
+        description: `Veuillez fournir un niveau d'amplification des basses. Niveaux : low, medium, high, ou none`,
         value: "[level]",
         type: 3,
         required: true,
@@ -102,7 +102,7 @@ module.exports = {
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | **You must be in a voice channel to use this command.**"
+          "❌ | **Vous devez être dans un canal vocal pour utiliser cette commande.**"
         );
       if (
         guild.me.voice.channel &&
@@ -110,7 +110,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **Vous devez être dans un canal vocal pour utiliser cette commande !**"
+          ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
         );
       if (!args)
         return client.sendTime(
@@ -129,7 +129,7 @@ module.exports = {
 
       return client.sendTime(
         interaction,
-        `✅ | **Réglage du niveau d'amplification des basses sur** \`${level}\``
+        `✅ | **Niveau d'amplification des basses  définie sur** \`${level}\``
       );
     },
   },
