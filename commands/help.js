@@ -39,7 +39,7 @@ module.exports = {
   Casserole : v${require("../package.json").version}
   [✨ Serveur de support](${
     client.botconfig.SupportServer
-  }) | [GitHub](https://github.com/TurfuMC/Casserole) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
+  }) | [GitHub](https://github.com/zendrique/Casserole) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
     if (!args[0]) message.channel.send(Embed);
     else {
       let cmd =
@@ -121,9 +121,9 @@ module.exports = {
             ).setDescription(`${Commands.join("\n")}
   
             Casserole : v${require("../package.json").version}
-    [✨ Editer par TurfuMC](${
+    [✨ Editer par Zendrique](${
     client.config.SupportServer
-  }) | [GitHub]https://github.com/TurfuMC) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
+  }) | [GitHub]https://github.com/Zendrique) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
       if (!args) return interaction.send(Embed);
       else {
         let cmd =
