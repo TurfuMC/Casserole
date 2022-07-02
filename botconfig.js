@@ -19,23 +19,24 @@ module.exports = {
   Permissions: 2205281600, //Bot Inviting Permissions
   Website: process.env.Website || "https://example.com", //Website where it is hosted at includes http or https || Use "0.0.0.0" if you using Heroku || Do not include /api/callback. Just the website url. I.e. "https://foo.bar"
   //If you get invalid oauth, make sure on the discord developer page you set the oauth url to something like: https://example.com/api/callback.
-  
+
   Presence: {
     status: "online", // You can show online, idle, and dnd
     name: "Music", // The message shown
     type: "LISTENING", // PLAYING, WATCHING, LISTENING, STREAMING
   },
 
-   // Lavalink server; public lavalink -> https://lavalink-list.darrennathanael.com/; create one yourself -> https://darrennathanael.com/post/how-to-lavalink/
-  // The default one should work fine, altho if you have issue with it, you can create your own or use another public lavalink.
+  // You need a lavalink server for this bot to work!!!!
+  // Lavalink server; public lavalink -> https://lavalink-list.darrennathanael.com/; create one yourself -> https://darrennathanael.com/post/how-to-lavalink
   Lavalink: {
     id: "Main", //- Used for indentifier. You can set this to whatever you want.
-    host: "lavalink.darrenofficial.com", //- The host name or IP of the lavalink server.
+    host: "", //- The host name or IP of the lavalink server.
     port: 80, // The port that lavalink is listening to. This must be a number!
-    pass: "hisudhan", //- The password of the lavalink server.
+    pass: "", //- The password of the lavalink server.
     secure: false, // Set this to true if the lavalink uses SSL. if not set it to false.
+    retryAmount: 200, //- The amount of times to retry connecting to the node if connection got dropped.
+    retryDelay: 40, //- Delay between reconnect attempts if connection is lost.
   },
-
   //Please go to https://developer.spotify.com/dashboard/
   Spotify: {
     ClientID: process.env.Spotify_ClientID || "", //Spotify Client ID

@@ -133,11 +133,7 @@ class DiscordMusicBot extends Client {
     );
 
     this.Manager = new Manager({
-      plugins: [
-        new deezer(),
-        new apple(),
-        new facebook(),
-      ],
+      plugins: [new deezer(), new apple(), new facebook()],
       nodes: [
         {
           identifier: this.botconfig.Lavalink.id,
@@ -145,6 +141,8 @@ class DiscordMusicBot extends Client {
           port: this.botconfig.Lavalink.port,
           password: this.botconfig.Lavalink.pass,
           secure: this.botconfig.Lavalink.secure,
+          retryAmount: this.botconfig.Lavalink.retryAmount,
+          retryDelay: this.botconfig.Lavalink.retryDelay,
         },
       ],
       send(id, payload) {
