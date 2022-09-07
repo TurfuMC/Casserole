@@ -40,7 +40,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+        "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
       );
     message.author
       .send(
@@ -80,7 +80,7 @@ module.exports = {
           )
       )
       .catch((e) => {
-        return message.channel.send("**:x: Vos DM sont désactivés**");
+        return message.channel.send("**❌ Vos DM sont désactivés**");
       });
 
     client.sendTime(message.channel, "✅ | **Vérifiez vos DM !**");
@@ -119,7 +119,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+          "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
         );
       try {
         let embed = new MessageEmbed()
@@ -154,7 +154,7 @@ module.exports = {
           );
         user.send(embed);
       } catch (e) {
-        return client.sendTime(interaction, "**:x: Vos DM sont désactivés**");
+        return client.sendTime(interaction, "**❌ Vos DM sont désactivés**");
       }
 
       client.sendTime(interaction, "✅ | **Vérifiez vos DM !**");

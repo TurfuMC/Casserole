@@ -31,7 +31,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+        "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
       );
 
     let SearchString = args.join(" ");
@@ -186,7 +186,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+          "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
         );
       let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
       if (!CheckNode || !CheckNode.connected) {
@@ -216,14 +216,14 @@ module.exports = {
             if (!player.queue.current) player.destroy();
             return client.sendError(
               interaction,
-              `:x: | **Une erreur s'est produite lors de la recherche. Je savais que faire travailler les chinois c'étais pas une bonne idée** https://tenor.com/view/its-just-not-working-out-eric-cartman-south-park-s6e6-professor-chaos-gif-22246091`
+              `❌ | **Une erreur s'est produite lors de la recherche. Je savais que faire travailler les chinois c'étais pas une bonne idée** https://tenor.com/view/its-just-not-working-out-eric-cartman-south-park-s6e6-professor-chaos-gif-22246091**`
             );
 
           case "NO_MATCHES":
             if (!player.queue.current) player.destroy();
             return client.sendTime(
               interaction,
-              ":x: | **Aucun resultat n'a été trouvé**"
+              "❌ | **Aucun resultat n'a été trouvé**"
             );
           case "TRACK_LOADED":
             player.queue.add(TrackUtils.build(Searched.tracks[0], member.user));
@@ -261,7 +261,7 @@ module.exports = {
         } catch (err) {
           return client.sendTime(
             interaction,
-            `:x: | **Une erreur s'est produite lors de la recherche :** ${err.message}`
+            `❌ | **Une erreur s'est produite lors de la recherche :** ${err.message}`
           );
         }
         switch (res.loadType) {
@@ -269,7 +269,7 @@ module.exports = {
             if (!player.queue.current) player.destroy();
             return client.sendTime(
               interaction,
-              ":x: | **Aucun resultat n'a été trouvé**"
+              "❌ | **Aucun resultat n'a été trouvé**"
             );
           case "TRACK_LOADED":
             player.queue.add(res.tracks[0]);

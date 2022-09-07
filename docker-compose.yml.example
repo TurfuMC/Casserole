@@ -21,7 +21,7 @@ services:
     networks:
       - lavalink-net
     volumes:
-      - ./application.yml:/opt/Lavalink/application.yml:ro
+      - ./docker/application.yml:/opt/Lavalink/application.yml:ro
 
 networks:
   lavalink-net:

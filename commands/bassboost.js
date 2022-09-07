@@ -40,14 +40,14 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+        "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
       );
 
     if (!args[0])
       return client.sendTime(
         message.channel,
         "**Veuillez fournir un niveau d'amplification des basses. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"
-      ); //if the user do not provide args [arguments]
+      );
 
     let level = "none";
     if (args.length && args[0].toLowerCase() in levels)
@@ -110,13 +110,13 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+          "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
         );
       if (!args)
         return client.sendTime(
           interaction,
           "**Veuillez fournir un niveau d'amplification des basses. \nNiveaux disponibles :** `none`, `low`, `medium`, `high`"
-        ); //if the user do not provide args [arguments]
+        );
 
       let level = "none";
       if (args.length && args[0].value in levels) level = args[0].value;

@@ -40,7 +40,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+        "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
       );
     player.queue.clear();
     await client.sendTime(message.channel, "✅ | **File d'attente vidé  !**");
@@ -68,7 +68,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+          "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
         );
       let player = await client.Manager.get(interaction.guild_id);
       if (!player)

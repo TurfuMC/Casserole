@@ -35,7 +35,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
+        "❌ | **Vous devez être sur le même canal vocal que moi pour utiliser cette commande !**"
       );
 
     if (player.queueRepeat) {
@@ -76,7 +76,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **Vous devez être dans un canal vocal pour utiliser cette commande !**"
+          "❌ | **Vous devez être dans un canal vocal pour utiliser cette commande !**"
         );
 
       if (player.queueRepeat) {

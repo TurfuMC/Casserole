@@ -15,7 +15,7 @@
     "url": "git+https://github.com/TurfuMC/Casserole.git"
   },
   "engines": {
-    "node": ">=12.x"
+    "node": "^12.x"
   },
   "keywords": [
     "discord",

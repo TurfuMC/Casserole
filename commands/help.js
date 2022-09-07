@@ -39,7 +39,9 @@ module.exports = {
   Casserole : v${require("../package.json").version}
   [✨ Serveur de support](${
     client.botconfig.SupportServer
-  }) | [GitHub](https://github.com/zendrique/Casserole) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
+  }) | [GitHub](https://github.com/zendrique/casserole) | [Dashboard](${
+      client.botconfig.Website
+    }) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
     if (!args[0]) message.channel.send(Embed);
     else {
       let cmd =
@@ -120,10 +122,12 @@ module.exports = {
               }help [Command] | Bonne journée !`
             ).setDescription(`${Commands.join("\n")}
   
-            Casserole : v${require("../package.json").version}
-    [✨ Editer par Zendrique](${
-    client.config.SupportServer
-  }) | [GitHub]https://github.com/Zendrique) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
+  Discord Music Bot Version: v${require("../package.json").version}
+  [✨ Serveur de support](${
+    client.botconfig.SupportServer
+  }) | [GitHub](https://github.com/zendrique/casserole) | [Dashboard](${
+        client.botconfig.Website
+      }) | Originale [SudhanPlayz](https://github.com/SudhanPlayz)`);
       if (!args) return interaction.send(Embed);
       else {
         let cmd =
